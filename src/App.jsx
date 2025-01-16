@@ -7,6 +7,7 @@ function App() {
   const [quizData, setQuizData] = useState(null);
   const [endGame, setEndGame] = useState(false);
   const [userScore, setUserScore] = useState(null);
+  
   useEffect(() => {
     async function getData() {
       const { quizzes } = await fetch("/data/data.json").then((x) => x.json());
@@ -53,12 +54,19 @@ function App() {
           <MoonSvg />
         </label>
       </header>
-      {!endGame ? selectedQuiz ? <QuizScreen quizData={selectedQuiz} handleEndQuiz={handleEndQuiz} /> : <WelcomeScreen setSelectedQuiz={setSelectedQuiz} quizData={quizData} /> : <ResultScreen userScore={userScore} selectedQuiz={selectedQuiz} handleRestartGame={handleRestartGame} />}
+      {!endGame ? 
+        selectedQuiz ? 
+          <QuizScreen quizData={selectedQuiz} handleEndQuiz={handleEndQuiz} /> 
+          : 
+          <WelcomeScreen setSelectedQuiz={setSelectedQuiz} quizData={quizData} /> 
+        : 
+        <ResultScreen userScore={userScore} selectedQuiz={selectedQuiz} handleRestartGame={handleRestartGame} />}
     </div>
   );
 }
 
 function WelcomeScreen({ setSelectedQuiz, quizData }) {
+  
   function handleSelectQuiz(quizTitle) {
     setSelectedQuiz(quizData.find((x) => x.title === quizTitle));
   }
@@ -67,28 +75,19 @@ function WelcomeScreen({ setSelectedQuiz, quizData }) {
     <div className="welcome-contents">
       <div className="welcome-header">
         <h1>
-          <span>Welcome to the </span>
-          Frontend Quiz!
+          Frontend Quiz'e
+          <br />
+          <span>Hoşgeldiniz</span>
         </h1>
-        <p>Pick a subject to get started.</p>
+        <p>Bir konu seç ve başla</p>
       </div>
       <div className="welcome-quiz-btns">
-        <button onClick={() => handleSelectQuiz("HTML")}>
-          <img src="./svg/html.svg" alt="" />
-          <span>HTML</span>
-        </button>
-        <button onClick={() => handleSelectQuiz("CSS")}>
-          <img src="./svg/css.svg" alt="" />
-          <span>CSS</span>
-        </button>
-        <button onClick={() => handleSelectQuiz("JavaScript")}>
-          <img src="./svg/js.svg" alt="" />
-          <span>JavaScript</span>
-        </button>
-        <button onClick={() => handleSelectQuiz("Erişilebilirlik")}>
-          <img src="./svg/accessibility.svg" alt="" />
-          <span>Erişilebilirlik</span>
-        </button>
+        {quizData && quizData.map((x) => (
+          <button onClick={() => handleSelectQuiz(x.title)} key={x.title}>
+            <img src={x.icon} />
+            <span>{x.title}</span>
+          </button>
+        ))}
       </div>
     </div>
   );
@@ -141,7 +140,7 @@ function QuizScreen({ quizData, handleEndQuiz }) {
     <div className="quiz-contents">
       <div className="quiz-header">
         <p>
-          {quizData.questions.length} sorundan {currentQuestionIndex + 1}.
+          {quizData.questions.length} sorudan {currentQuestionIndex + 1}.
         </p>
         <h3>{currentQuestion.question}</h3>
       </div>
@@ -153,7 +152,13 @@ function QuizScreen({ quizData, handleEndQuiz }) {
           <label className={"quiz-option" + (showAnswer ? (currentQuestion.answer === x ? " correct" : selectedAnswer === x ? " incorrect" : "") : "")} key={x}>
             <input type="radio" name="answer" disabled={showAnswer} onChange={() => setSelectedAnswer(x)} />
             <span>{x}</span>
-            {showAnswer && (currentQuestion.answer === x ? <CorrectSvg fillColor="#26D782" /> : selectedAnswer === x && <InCorrectSvg fillColor="#EE5454" />)}
+            {showAnswer && (
+              currentQuestion.answer === x ? 
+              <CorrectSvg fillColor="#26D782" /> 
+              : 
+              selectedAnswer === x && 
+              <InCorrectSvg fillColor="#EE5454" />
+            )}
           </label>
         ))}
         {showAnswer ? (
@@ -181,7 +186,8 @@ function ResultScreen({ userScore, selectedQuiz, handleRestartGame }) {
     <div className="result-contents">
       <div className="result-header">
         <h3>
-          <span>Sınav tamamlandı </span>
+          <span>Sınav tamamlandı</span>
+          <br />
           İşte skorun...
         </h3>
       </div>

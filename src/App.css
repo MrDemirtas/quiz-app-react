@@ -21,6 +21,8 @@ body {
   box-sizing: border-box;
   padding: 4px;
   transition: all 0.8s ease-in-out;
+  cursor: pointer;
+
 }
 
 .switch:after {
@@ -53,6 +55,8 @@ header {
     display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
+
     svg {
       width: 16px;
       height: 16px;
@@ -121,7 +125,7 @@ header {
 .quiz-contents {
   margin-top: 32px;
   display: grid;
-  gap: 40px;
+  gap: 24px;
 }
 
 .quiz-header {
@@ -143,11 +147,11 @@ header {
 }
 
 .progress-bar {
-  margin-top: -16px;
   padding: 4px;
   height: 16px;
   background-color: #fff;
   border-radius: 999px;
+  margin-bottom: 16px;
 }
 
 .progress-bar-status {
@@ -176,6 +180,7 @@ header {
   font-weight: 500;
   line-height: 18px;
   border-radius: 12px;
+  cursor: pointer;
 
   input {
     appearance: none;
@@ -193,7 +198,7 @@ header {
 
 .quiz-option::before {
   background-color: #f4f6fa;
-  color: #626C7F;
+  color: #626c7f;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -257,6 +262,7 @@ header {
   color: #fff;
   border: none;
   border-radius: 12px;
+  cursor: pointer;
 }
 
 .result-contents {
@@ -308,4 +314,205 @@ header {
   gap: 8px;
   font-size: 18px;
   line-height: 18px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 54px 64px;
+  }
+
+  header {
+    label {
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  .quiz-type {
+    img {
+      width: 56px;
+      height: 56px;
+    }
+    h2 {
+      font-size: 28px;
+      line-height: 28px;
+    }
+  }
+
+  .switch {
+    width: 48px;
+    height: 28px;
+  }
+
+  .welcome-contents {
+    margin-top: 64px;
+  }
+
+  .welcome-header {
+    h1 {
+      font-size: 64px;
+      line-height: 64px;
+    }
+    p {
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
+
+  .welcome-quiz-btns {
+    gap: 24px;
+    button {
+      gap: 32px;
+      border-radius: 24px;
+      cursor: pointer;
+
+      img {
+        width: 56px;
+        height: 56px;
+      }
+      span {
+        font-size: 28px;
+        line-height: 28px;
+      }
+    }
+  }
+
+  .quiz-header {
+    p {
+      font-size: 20px;
+      line-height: 30px;
+    }
+    h3 {
+      font-size: 36px;
+      line-height: 43.2px;
+    }
+  }
+
+  .quiz-contents {
+    margin-top: 50px;
+    gap: 40px;
+  }
+
+  .progress-bar {
+    margin-bottom: 24px;
+  }
+
+  .quiz-options {
+    gap: 24px;
+  }
+
+  .quiz-option::before {
+    border-radius: 12px;
+    min-width: 56px;
+    min-height: 56px;
+    font-size: 28px;
+    line-height: 28px;
+  }
+
+  .quiz-option {
+    border-radius: 24px;
+
+    span {
+      font-size: 28px;
+      line-height: 28px;
+    }
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .warning-msg {
+    font-size: 24px;
+    line-height: 36px;
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .result-contents {
+    margin-top: 50px;
+    gap: 64px;
+  }
+
+  .result-header {
+    h3 {
+      font-size: 64px;
+      line-height: 64px;
+    }
+  }
+
+  .result-data {
+    gap: 32px;
+  }
+
+  .result-info {
+    border-radius: 24px;
+    h3 {
+      font-size: 144px;
+      line-height: 144px;
+    }
+
+    p {
+      font-size: 24px;
+      line-height: 36px;
+    }
+  }
+
+  .purple-btn {
+    font-size: 28px;
+    line-height: 28px;
+    padding: 32px;
+    border-radius: 24px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+    margin-inline: auto;
+    padding: 100px 140px;
+  }
+
+  .welcome-contents {
+    margin-top: 100px;
+    flex-direction: row;
+    gap: 130px;
+  }
+
+  .welcome-header {
+    gap: 48px;
+  }
+
+  .welcome-quiz-btns {
+    flex-grow: 1;
+  }
+
+  .quiz-contents {
+    grid-template-columns: 1fr 1fr;
+    gap: 130px;
+  }
+
+  .quiz-header {
+    grid-column: 1 / 1;
+  }
+
+  .progress-bar {
+    margin-top: -250px;
+    grid-column: 1 / 1;
+  }
+
+  .quiz-options {
+    grid-row: 1 / 1;
+    grid-column: 2 / 2;
+  }
+
+  .result-contents {
+    gap: 140px;
+    margin-top: 85px;
+    grid-template-columns: 1fr 1fr;
+  }
 }
